@@ -1,5 +1,5 @@
 {
-  "name": "crypfunds",
+  "name": "blockfunds",
   "version": "1.0.0",
   "description": "Blockchain based funraiser",
   "main": "index.js",
