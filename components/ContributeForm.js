@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Input, Message } from "semantic-ui-react";
+import { Button, Form, Icon, Input, Label, Message } from "semantic-ui-react";
 import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
 import { Router } from "../routes";
@@ -8,6 +8,7 @@ export default class ContributeForm extends Component {
     value: "",
     errorMessage: "",
     loading: false,
+    convert: "",
   };
   onSubmit = async (event) => {
     event.preventDefault();
@@ -30,13 +31,27 @@ export default class ContributeForm extends Component {
     return (
       <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
         <Form.Field>
-          <label>Amount to Contribute</label>
+          <b style={{ color: "red" }}>Contribute here!</b>
           <Input
+            icon="ethereum"
+            placeholder="Contribute to this campaign."
+            iconPosition="left"
+            size="massive"
             value={this.state.value}
-            onChange={(event) => this.setState({ value: event.target.value })}
+            onChange={(event) =>
+              this.setState({
+                value: event.target.value,
+                convert: web3.utils.fromWei(event.target.value, "ether"),
+              })
+            }
             label="wei"
             labelPosition="right"
           />
+          {this.state.convert.length > 1 ? (
+            <Label icon="ethereum" color="red">
+              <Icon name="exchange" /> {this.state.convert} ethers
+            </Label>
+          ) : null}
         </Form.Field>
         <Message
           error
@@ -44,7 +59,7 @@ export default class ContributeForm extends Component {
           Transaction cannot be proceeded."
           content={this.state.errorMessage}
         />
-        <Button primary loading={this.state.loading}>
+        <Button color="red" loading={this.state.loading}>
           Contribute!
         </Button>
       </Form>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Layout from "../../../components/Layout";
 import { Link } from "./../../../routes";
-import { Button, Table } from "semantic-ui-react";
+import { Button, Icon, Label, Table } from "semantic-ui-react";
 import Campaign from "../../../ethereum/campaign";
 import RequestRow from "../../../components/RequestRow";
 export default class RequestIndex extends Component {
@@ -10,7 +10,7 @@ export default class RequestIndex extends Component {
     const campaign = Campaign(address);
     const requestCount = await campaign.methods.getRequestsCount().call();
     const approversCount = await campaign.methods.approversCount().call();
-
+    const summary = await campaign.methods.getSummary().call();
     const requests = await Promise.all(
       Array(parseInt(requestCount))
         .fill()
@@ -18,8 +18,19 @@ export default class RequestIndex extends Component {
           return campaign.methods.requests(index).call();
         })
     );
-
-    return { address, requests, requestCount, approversCount };
+    return {
+      minimumContribution: summary[0],
+      balance: summary[1],
+      requestsCount: summary[2],
+      approversCount: summary[3],
+      manager: summary[4],
+      campaignTitle: summary[5],
+      campaignDescription: summary[6],
+      address: props.query.address,
+      requests,
+      requestCount,
+      approversCount,
+    };
   }
 
   renderRows() {
@@ -41,14 +52,24 @@ export default class RequestIndex extends Component {
 
     return (
       <Layout>
-        <h3>Requests</h3>
+        <h2>{`Requests on campaign ${this.props.address}`}</h2>
+        <h3>{`Manager: ${this.props.manager}`}</h3>
+        <hr />
         <Link route={`/campaigns/${this.props.address}/requests/new`}>
           <a>
-            <Button primary floated="right" style={{ marginBottom: 10 }}>
-              Add Request
-            </Button>
+            <Button
+              icon="plus circle"
+              color="black"
+              floated="right"
+              style={{ marginBottom: 10 }}
+              content="Add new request"
+            />
           </a>
         </Link>
+        <Label pointing="right" as="a" color="red" tag>
+          Note: You can only add request if you are the manager of this
+          campaign.
+        </Label>
         <Table>
           <Header>
             <Row>
@@ -63,7 +84,15 @@ export default class RequestIndex extends Component {
           </Header>
           <Body>{this.renderRows()}</Body>
         </Table>
-        <div>Found {this.props.requestCount} requests.</div>
+
+        {this.props.requestCount ? null : (
+          <div>
+            <h1 style={{ marginTop: "55px" }}>
+              <Icon size="big" name="braille" style={{ marginRight: "25px" }} />
+              "No request found on this campaign by the manager."
+            </h1>
+          </div>
+        )}
       </Layout>
     );
   }

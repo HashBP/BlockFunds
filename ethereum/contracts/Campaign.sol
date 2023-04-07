@@ -1,8 +1,17 @@
 contract CampaignFactory {
     address[] public deployedCampaigns;
 
-    function createCampaign(uint minimum) public {
-        address newCampaign = new Campaign(minimum, msg.sender);
+    function createCampaign(
+        uint256 minimum,
+        string title,
+        string aboutCampaign
+    ) public {
+        address newCampaign = new Campaign(
+            minimum,
+            title,
+            aboutCampaign,
+            msg.sender
+        );
         deployedCampaigns.push(newCampaign);
     }
 
@@ -14,26 +23,34 @@ contract CampaignFactory {
 contract Campaign {
     struct Request {
         string description;
-        uint value;
+        uint256 value;
         address recipient;
         bool complete;
-        uint approvalCount;
+        uint256 approvalCount;
         mapping(address => bool) approvals;
     }
 
     Request[] public requests;
     address public manager;
-    uint public minimumContribution;
+    uint256 public minimumContribution;
     mapping(address => bool) public approvers;
-    uint public approversCount;
-
+    uint256 public approversCount;
+    string public descCampaign;
+    string public title;
     modifier restricted() {
         require(msg.sender == manager);
         _;
     }
 
-    function Campaign(uint minimum, address creator) public {
+    function Campaign(
+        uint256 minimum,
+        string campaignTitle,
+        string aboutCampaign,
+        address creator
+    ) public {
         manager = creator;
+        title = campaignTitle;
+        descCampaign = aboutCampaign;
         minimumContribution = minimum;
     }
 
@@ -46,7 +63,7 @@ contract Campaign {
 
     function createRequest(
         string description,
-        uint value,
+        uint256 value,
         address recipient
     ) public restricted {
         Request memory newRequest = Request({
@@ -60,7 +77,7 @@ contract Campaign {
         requests.push(newRequest);
     }
 
-    function approveRequest(uint index) public {
+    function approveRequest(uint256 index) public {
         Request storage request = requests[index];
 
         require(approvers[msg.sender]);
@@ -70,10 +87,10 @@ contract Campaign {
         request.approvalCount++;
     }
 
-    function finalizeRequest(uint index) public restricted {
+    function finalizeRequest(uint256 index) public restricted {
         Request storage request = requests[index];
 
-        require(request.approvalCount > (approversCount / 2));
+        require(request.approvalCount >= (approversCount / 2));
         require(!request.complete);
 
         request.recipient.transfer(request.value);
@@ -83,18 +100,28 @@ contract Campaign {
     function getSummary()
         public
         view
-        returns (uint, uint, uint, uint, address)
+        returns (
+            uint256,
+            uint256,
+            uint256,
+            uint256,
+            address,
+            string,
+            string
+        )
     {
         return (
             minimumContribution,
             this.balance,
             requests.length,
             approversCount,
-            manager
+            manager,
+            title,
+            descCampaign
         );
     }
 
-    function getRequestsCount() public view returns (uint) {
+    function getRequestsCount() public view returns (uint256) {
         return requests.length;
     }
 }

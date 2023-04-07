@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Form, Button, Message, Input } from "semantic-ui-react";
+import {
+  Form,
+  Button,
+  Message,
+  Input,
+  TextArea,
+  Label,
+  Icon,
+} from "semantic-ui-react";
 import Campaign from "../../../ethereum/campaign";
 import web3 from "../../../ethereum/web3";
 import { Link, Router } from "../../../routes";
@@ -12,6 +20,7 @@ class RequestNew extends Component {
     recipient: "",
     loading: false,
     errorMessage: "",
+    convert: "",
   };
 
   static async getInitialProps(props) {
@@ -22,7 +31,7 @@ class RequestNew extends Component {
 
   onSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state.recipient,"This is recipient");
+    console.log(this.state.recipient, "This is recipient");
 
     const campaign = Campaign(this.props.address);
     const { description, value, recipient } = this.state;
@@ -31,7 +40,7 @@ class RequestNew extends Component {
 
     try {
       const accounts = await web3.eth.getAccounts();
-      console.log(accounts,"ACCOUNT");
+      console.log(accounts, "ACCOUNT");
       await campaign.methods
         .createRequest(description, value, recipient)
         .send({ from: accounts[0] });
@@ -47,14 +56,14 @@ class RequestNew extends Component {
   render() {
     return (
       <Layout>
-        <Link route={`/campaigns/${this.props.address}/requests`}>
-          <a>Back</a>
-        </Link>
-        <h3>Create a Request</h3>
+        <h2>Create a Request</h2>
+        <hr />
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
             <label>Description</label>
-            <Input
+            <TextArea
+              placeholder="Tell us more"
+              style={{ minHeight: 200 }}
               value={this.state.description}
               onChange={(event) =>
                 this.setState({ description: event.target.value })
@@ -66,12 +75,27 @@ class RequestNew extends Component {
             <label>Value in Wei</label>
             <Input
               value={this.state.value}
-              onChange={(event) => this.setState({ value: event.target.value })}
+              icon={"ethereum"}
+              iconPosition="left"
+              label="wei"
+              labelPosition="right"
+              size="huge"
+              onChange={(event) =>
+                this.setState({
+                  convert: web3.utils.fromWei(event.target.value, "ether"),
+                  value: event.target.value,
+                })
+              }
             />
+            {this.state.convert.length > 1 ? (
+              <Label icon="ethereum" color="red">
+                <Icon name="exchange" /> {this.state.convert} ethers
+              </Label>
+            ) : null}
           </Form.Field>
 
           <Form.Field>
-            <label>Recipient</label>
+            <label>Address of the Recipient</label>
             <Input
               value={this.state.recipient}
               onChange={(event) =>
@@ -81,8 +105,13 @@ class RequestNew extends Component {
           </Form.Field>
 
           <Message error header="Oops!" content={this.state.errorMessage} />
-          <Button primary loading={this.state.loading}>
+          <Button color="black" loading={this.state.loading}>
             Create!
+          </Button>
+          <Button color="red">
+            <Link route={`/campaigns/${this.props.address}/requests`}>
+              <a style={{color:"white"}}>Cancel! </a>
+            </Link>
           </Button>
         </Form>
       </Layout>

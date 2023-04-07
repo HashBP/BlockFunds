@@ -15,7 +15,7 @@ export default (props) => {
       </Head>
       <Header />
       {props.children}
-      <h1>I am footer</h1>
+      {/* <h1>I am footer</h1> */}
     </Container>
   );
 };
