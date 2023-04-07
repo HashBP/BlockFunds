@@ -10,7 +10,10 @@ export default (props) => {
       <HeadElement />
       <Header />
       {props.children}
-      <div style={{ position: "fixed", bottom: "15px",width:"inherit" }}>
+      <div
+        className="footer"
+        style={{ position: "fixed", bottom: "15px", width: "inherit" }}
+      >
         <Footer />
       </div>
     </Container>

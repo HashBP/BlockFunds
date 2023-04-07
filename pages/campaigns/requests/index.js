@@ -87,7 +87,7 @@ export default class RequestIndex extends Component {
           <Body>{this.renderRows()}</Body>
         </Table>
         {this.props.requestCount === "0" ? (
-          <h1 style={{ marginTop: "55px" }}>
+          <h1 style={{ marginTop: "55px" ,color:"white"}}>
             <Icon size="big" name="braille" style={{ marginRight: "25px" }} />
             "No request found on this campaign by the manager."
           </h1>
