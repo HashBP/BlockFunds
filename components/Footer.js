@@ -10,20 +10,30 @@ export default class Footer extends Component {
           <b>Lets Talk!</b>
         </Menu.Item>
         <Menu.Item>
-          <Icon size="large" name="linkedin" color="blue" />
+          <a href="https://www.linkedin.com/in/harsh-vardhan-971090207/">
+            <Icon size="large" name="linkedin" color="blue" />
+          </a>
         </Menu.Item>
         <Menu.Item>
-          <Icon size="large" name="git" color="pink" />
+          <a href="https://github.com/HashBP">
+            <Icon size="large" name="git" color="pink" />
+          </a>
         </Menu.Item>
         <Menu.Item>
-          <Icon size="large" name="youtube" color="red" />
+          <a href="https://www.youtube.com/channel/UC7YyX01C2qtBbDB52UGQJ6Q">
+            <Icon size="large" name="youtube" color="red" />
+          </a>
         </Menu.Item>
         ;
         <Menu.Item>
-          <Icon color="red" size="large" name="gratipay" />
+          <a href="https://gratipay.com/">
+            <Icon color="red" size="large" name="gratipay" />
+          </a>
         </Menu.Item>
         <Menu.Item>
-          <Icon name="coffee" color="yellow" size="large" />
+          <a href="https://www.buymeacoffee.com/hvptenuE">
+            <Icon name="coffee" color="yellow" size="large" />
+          </a>
         </Menu.Item>
       </Menu>
     );

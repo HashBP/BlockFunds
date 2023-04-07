@@ -52,10 +52,24 @@ export default class RequestIndex extends Component {
 
     return (
       <Layout>
+        <Link
+          style={{ color: "white" }}
+          route={`/campaigns/${this.props.address}`}
+        >
+          <a>
+            <Button
+              content="Back"
+              inverted
+              color="red"
+              icon="arrow alternate circle left"
+            />
+          </a>
+        </Link>
         <h2
           style={{ color: "white" }}
         >{`Requests on campaign ${this.props.address}`}</h2>
         <h3 style={{ color: "white" }}>{`Manager: ${this.props.manager}`}</h3>
+
         <hr />
         <Link route={`/campaigns/${this.props.address}/requests/new`}>
           <a>
@@ -87,7 +101,7 @@ export default class RequestIndex extends Component {
           <Body>{this.renderRows()}</Body>
         </Table>
         {this.props.requestCount === "0" ? (
-          <h1 style={{ marginTop: "55px" ,color:"white"}}>
+          <h1 style={{ marginTop: "55px", color: "white" }}>
             <Icon size="big" name="braille" style={{ marginRight: "25px" }} />
             "No request found on this campaign by the manager."
           </h1>

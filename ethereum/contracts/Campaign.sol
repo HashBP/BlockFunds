@@ -1,6 +1,6 @@
 pragma solidity ^0.4.17;
-contract CampaignFactory {
 
+contract CampaignFactory {
     address[] public deployedCampaigns;
     string[] public deployedTitles;
 
@@ -91,10 +91,10 @@ contract Campaign {
         request.approvalCount++;
     }
 
-    function finalizeRequest(uint256 index) public restricted {
+    function finalizeRequest(uint index) public restricted {
         Request storage request = requests[index];
 
-        require(request.approvalCount >= (approversCount / 2));
+        require(request.approvalCount > (approversCount / 2));
         require(!request.complete);
 
         request.recipient.transfer(request.value);
@@ -104,15 +104,7 @@ contract Campaign {
     function getSummary()
         public
         view
-        returns (
-            uint256,
-            uint256,
-            uint256,
-            uint256,
-            address,
-            string,
-            string
-        )
+        returns (uint256, uint256, uint256, uint256, address, string, string)
     {
         return (
             minimumContribution,

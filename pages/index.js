@@ -54,13 +54,19 @@ class CampaignIndex extends Component {
             raised="true"
             fluid="true"
             image={this.getRandomItem()}
-            header="Campaign name"
-            meta={`Campaign address: ${
+            header={`Campaign address: ${
               address.slice(0, 10) + "..." + address.slice(-5)
             }`}
+            meta={"Check this campaign out."}
             description={
               <Link route={`/campaigns/${address}`}>
-                <Button inverted icon="eye" color="red" content="View Campaign" fluid="true" />
+                <Button
+                  inverted
+                  icon="eye"
+                  color="red"
+                  content="View Campaign"
+                  fluid="true"
+                />
               </Link>
             }
             extra={
@@ -96,15 +102,15 @@ class CampaignIndex extends Component {
               />
             </a>
           </Link>
-          <h2 style={{color:"white"}}>Open Campaigns</h2>
+          <h2 style={{ color: "white" }}>Open Campaigns</h2>
           <hr />
           {!this.props.campaigns.length ? (
             <div>
-              <h1>
+              <h1 style={{ color: "white" }}>
                 <Icon
                   size="big"
                   name="braille"
-                  style={{ marginRight: "40px" }}
+                  style={{ marginRight: "40px", color: "white" }}
                 />
                 Opps! No open Campaigns to show. You may Create One!
               </h1>
