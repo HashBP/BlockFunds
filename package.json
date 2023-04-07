@@ -10,6 +10,8 @@
   "author": "Hash",
   "license": "ISC",
   "dependencies": {
+    "css-loader": "^6.7.3",
+    "file-loader": "^6.2.0",
     "fs-extra": "^11.1.1",
     "ganache-cli": "^6.12.2",
     "mocha": "^10.2.0",
@@ -19,7 +21,9 @@
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
     "solc": "^0.4.26",
+    "style-loader": "^3.3.2",
     "truffle-hdwallet-provider": "^1.0.17",
+    "url-loader": "^4.1.1",
     "web3": "^1.9.0"
   }
 }

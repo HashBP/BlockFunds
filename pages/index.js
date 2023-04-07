@@ -3,6 +3,7 @@ import factory from "./../ethereum/factory";
 import { Button, Card, Grid, Icon } from "semantic-ui-react";
 import Layout from "../components/Layout";
 import { Link } from "./../routes";
+import PizzaLoading from "../utils/PizzaLoading";
 class CampaignIndex extends Component {
   static async getInitialProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
@@ -69,6 +70,7 @@ class CampaignIndex extends Component {
   render() {
     return (
       <Layout>
+        <PizzaLoading/>
         <div>
           <Link route="/campaigns/new">
             <a>
