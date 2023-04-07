@@ -54,7 +54,7 @@ export default class CampaignNew extends Component {
   render() {
     return (
       <Layout>
-        <h1>Create a Campaign</h1>
+        <h1 style={{color:"white"}}>Create a Campaign</h1>
         <hr />
         <Form
           error={!!this.state.errorMessage}
@@ -108,7 +108,7 @@ export default class CampaignNew extends Component {
             </Form>
           </Form.Field>
           <Message error header="Oops!!" content={this.state.errorMessage} />
-          <Button loading={this.state.loading} color="black" fluid="true">
+          <Button inverted loading={this.state.loading} fluid="true">
             Create
           </Button>
         </Form>

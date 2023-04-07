@@ -54,9 +54,9 @@ export default class CampaignShow extends Component {
   render() {
     return (
       <Layout>
-        <h1>
+        <h1 style={{ color: "white" }}>
           Campaign{" "}
-          {this.props.address.slice(0, 20) +
+          {this.props.address.slice(0, 16) +
             "..." +
             this.props.address.slice(-5)}
         </h1>
@@ -82,10 +82,10 @@ export default class CampaignShow extends Component {
           </Card>
         </Card.Group>
         <hr />
-        <h2>About Manager</h2>
+        <h2 style={{color:"white"}}>About Manager</h2>
         <Grid divided columns={2}>
           <Grid.Column width={8}>
-            <Card>
+            <Card raised="true">
               <Image
                 src={`https://robohash.org/${Math.floor(
                   Math.random() * 10000000000
@@ -99,8 +99,8 @@ export default class CampaignShow extends Component {
                     "..." +
                     this.props.manager.slice(-5)}
                 </Card.Header>
-                <Card.Meta>"Manager"</Card.Meta>
-                <Card.Description>"About the manager "</Card.Description>
+                <Card.Meta>Manager</Card.Meta>
+                <Card.Description>Managers is the one who has created this campaign and has requested for the funds.</Card.Description>
               </Card.Content>
               <Button color="black" floated="right">
                 <a
@@ -116,7 +116,7 @@ export default class CampaignShow extends Component {
             <ContributeForm address={this.props.address} />
           </Grid.Column>
           <Grid.Column width={8}>
-            <h2>About the Campaign</h2>
+            <h2 style={{color:"white"}}>About the Campaign</h2>
             {this.renderCards()}
             <hr style={{ marginBottom: "55px" }} />
             <Message
@@ -127,7 +127,7 @@ export default class CampaignShow extends Component {
             />
             <Link route={`/campaigns/${this.props.address}/requests`}>
               <a>
-                <Button fluid="true" color="black">
+                <Button fluid="true" inverted color="white">
                   View Requests on this campaign
                 </Button>
               </a>

@@ -1,21 +1,18 @@
 import React from "react";
 import { Container } from "semantic-ui-react";
 import Header from "./Header";
-import Head from "next/head";
-
+import Footer from "./Footer";
+import HeadElement from "./HeadElement";
+//
 export default (props) => {
   return (
     <Container>
-      <Head>
-        <link
-          async
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
-        />
-      </Head>
+      <HeadElement />
       <Header />
       {props.children}
-      {/* <h1>I am footer</h1> */}
+      <div style={{ position: "fixed", bottom: "15px",width:"inherit" }}>
+        <Footer />
+      </div>
     </Container>
   );
 };

@@ -31,7 +31,6 @@ class RequestNew extends Component {
 
   onSubmit = async (event) => {
     event.preventDefault();
-    console.log(this.state.recipient, "This is recipient");
 
     const campaign = Campaign(this.props.address);
     const { description, value, recipient } = this.state;
@@ -56,11 +55,11 @@ class RequestNew extends Component {
   render() {
     return (
       <Layout>
-        <h2>Create a Request</h2>
+        <h2 style={{color:"white"}}>Create a Request</h2>
         <hr />
         <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
           <Form.Field>
-            <label>Description</label>
+            <label style={{color:"white"}}>Description</label>
             <TextArea
               placeholder="Tell us more"
               style={{ minHeight: 200 }}
@@ -72,7 +71,7 @@ class RequestNew extends Component {
           </Form.Field>
 
           <Form.Field>
-            <label>Value in Wei</label>
+            <label style={{color:"white"}}>Value in Wei</label>
             <Input
               value={this.state.value}
               icon={"ethereum"}
@@ -95,7 +94,7 @@ class RequestNew extends Component {
           </Form.Field>
 
           <Form.Field>
-            <label>Address of the Recipient</label>
+            <label style={{color:"white"}}>Address of the Recipient</label>
             <Input
               value={this.state.recipient}
               onChange={(event) =>
@@ -105,7 +104,7 @@ class RequestNew extends Component {
           </Form.Field>
 
           <Message error header="Oops!" content={this.state.errorMessage} />
-          <Button color="black" loading={this.state.loading}>
+          <Button inverted loading={this.state.loading}>
             Create!
           </Button>
           <Button color="red">

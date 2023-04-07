@@ -14,38 +14,44 @@ var _Header = require("./Header");
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _head = require("next\\dist\\lib\\head.js");
+var _Footer = require("./Footer");
 
-var _head2 = _interopRequireDefault(_head);
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _HeadElement = require("./HeadElement");
+
+var _HeadElement2 = _interopRequireDefault(_HeadElement);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = "C:\\Users\\user\\Desktop\\WallIt\\components\\Layout.js";
 
+//
 exports.default = function (props) {
   return _react2.default.createElement(_semanticUiReact.Container, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
-    }
-  }, _react2.default.createElement(_head2.default, {
-    __source: {
-      fileName: _jsxFileName,
       lineNumber: 9
     }
-  }, _react2.default.createElement("link", {
-    async: true,
-    rel: "stylesheet",
-    href: "https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css",
+  }, _react2.default.createElement(_HeadElement2.default, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
     }
-  })), _react2.default.createElement(_Header2.default, {
+  }), _react2.default.createElement(_Header2.default, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 11
     }
-  }), props.children);
+  }), props.children, _react2.default.createElement("div", { style: { position: "fixed", bottom: "15px", width: "inherit" }, __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }, _react2.default.createElement(_Footer2.default, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    }
+  })));
 };
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHNcXExheW91dC5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkNvbnRhaW5lciIsIkhlYWRlciIsIkhlYWQiLCJwcm9wcyIsImNoaWxkcmVuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQSxBQUFPOzs7O0FBQ1AsQUFBUzs7QUFDVCxBQUFPLEFBQVk7Ozs7QUFDbkIsQUFBTyxBQUVQOzs7Ozs7OztrQkFBZSxVQUFBLEFBQUMsT0FBVSxBQUN4Qjt5QkFDRSxBQUFDOztnQkFBRDtrQkFBQSxBQUNFO0FBREY7QUFBQSxHQUFBLGtCQUNFLEFBQUM7O2dCQUFEO2tCQUFBLEFBQ0U7QUFERjtBQUFBO1dBQ0UsQUFFRTtTQUZGLEFBRU0sQUFDSjtVQUhGLEFBR087O2dCQUhQO2tCQUZKLEFBQ0UsQUFDRSxBQU1GO0FBTkU7QUFDRSx1QkFLSixBQUFDOztnQkFBRDtrQkFSRixBQVFFLEFBQ0M7QUFERDtBQUFBLFlBVEosQUFDRSxBQVNTLEFBSVo7QUFmRCIsImZpbGUiOiJMYXlvdXQuanMiLCJzb3VyY2VSb290IjoiQzovVXNlcnMvdXNlci9EZXNrdG9wL1dhbGxJdCJ9
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHNcXExheW91dC5qcyJdLCJuYW1lcyI6WyJSZWFjdCIsIkNvbnRhaW5lciIsIkhlYWRlciIsIkZvb3RlciIsIkhlYWRFbGVtZW50IiwicHJvcHMiLCJjaGlsZHJlbiIsInBvc2l0aW9uIiwiYm90dG9tIiwid2lkdGgiXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLEFBQU87Ozs7QUFDUCxBQUFTOztBQUNULEFBQU8sQUFBWTs7OztBQUNuQixBQUFPLEFBQVk7Ozs7QUFDbkIsQUFBTyxBQUFpQjs7Ozs7Ozs7QUFDeEIsQUFDQTtrQkFBZSxVQUFBLEFBQUMsT0FBVSxBQUN4Qjt5QkFDRSxBQUFDOztnQkFBRDtrQkFBQSxBQUNFO0FBREY7QUFBQSxHQUFBLGtCQUNFLEFBQUM7O2dCQUFEO2tCQURGLEFBQ0UsQUFDQTtBQURBO0FBQUEsc0JBQ0EsQUFBQzs7Z0JBQUQ7a0JBRkYsQUFFRSxBQUNDO0FBREQ7QUFBQSxZQUZGLEFBR1MsQUFDUCwwQkFBQSxjQUFBLFNBQUssT0FBTyxFQUFFLFVBQUYsQUFBWSxTQUFTLFFBQXJCLEFBQTZCLFFBQU8sT0FBaEQsQUFBWSxBQUEwQztnQkFBdEQ7a0JBQUEsQUFDRTtBQURGO3FCQUNFLEFBQUM7O2dCQUFEO2tCQU5OLEFBQ0UsQUFJRSxBQUNFLEFBSVA7QUFKTztBQUFBO0FBUFIiLCJmaWxlIjoiTGF5b3V0LmpzIiwic291cmNlUm9vdCI6IkM6L1VzZXJzL3VzZXIvRGVza3RvcC9XYWxsSXQifQ==

@@ -1,5 +1,8 @@
+pragma solidity ^0.4.17;
 contract CampaignFactory {
+
     address[] public deployedCampaigns;
+    string[] public deployedTitles;
 
     function createCampaign(
         uint256 minimum,
@@ -12,11 +15,12 @@ contract CampaignFactory {
             aboutCampaign,
             msg.sender
         );
+        deployedTitles.push(title);
         deployedCampaigns.push(newCampaign);
     }
 
     function getDeployedCampaigns() public view returns (address[]) {
-        return deployedCampaigns;
+        return (deployedCampaigns);
     }
 }
 
@@ -112,7 +116,7 @@ contract Campaign {
     {
         return (
             minimumContribution,
-            this.balance,
+            address(this).balance,
             requests.length,
             approversCount,
             manager,

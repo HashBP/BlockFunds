@@ -31,7 +31,7 @@ export default class ContributeForm extends Component {
     return (
       <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
         <Form.Field>
-          <b style={{ color: "red" }}>Contribute here!</b>
+          <b style={{ color: "yellow",fontSize:"18px" }}>Contribute here!</b>
           <Input
             icon="ethereum"
             placeholder="Contribute to this campaign."
@@ -59,7 +59,7 @@ export default class ContributeForm extends Component {
           Transaction cannot be proceeded."
           content={this.state.errorMessage}
         />
-        <Button color="red" loading={this.state.loading}>
+        <Button inverted color="red" size="large" loading={this.state.loading}>
           Contribute!
         </Button>
       </Form>
